@@ -1,12 +1,31 @@
-# React + Vite
+# FrontendGPT-CICD-Project 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the Frontend application built with **React (Vite)**. It serves as the user interface for our GPT-based platform, communicating with the backend API hosted on AWS EC2.
 
-Currently, two official plugins are available:
+## 🛠 Tech Stack
+- **Framework:** React + Vite
+- **Deployment:** AWS EC2 (Single Instance)
+- **Web Server:** Nginx (Reverse Proxy)
+- **CI/CD:** GitHub Actions (Self-Hosted Runner)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🏗 Architecture
+The frontend is built as a static asset during the CI/CD process and served through Nginx. The automation is handled by a self-hosted runner directly on the EC2 instance to ensure fast deployment.
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🤖 CI/CD Pipeline
+The deployment is triggered automatically on every push to the `main` branch.
+
+**Workflow Steps:**
+1. **Checkout:** Pulls latest code.
+2. **Environment Setup:** Configures Node.js v22.x.
+3. **Install:** Executes `npm ci` for clean dependencies.
+4. **Build:** Runs `npm run build` to generate production assets.
+
+## ⚙️ Local Setup
+1. Clone the repo: `git clone [repo-url]`
+2. Install dependencies: `npm install`
+3. Start dev server: `npm run dev`
+
+## 📋 Troubleshooting
+- **Build Failures:** Ensure the `self-hosted` runner is active on EC2.
+- **Nginx Issues:** Check `/etc/nginx/sites-available/` for correct root path mapping to the `dist` folder.
